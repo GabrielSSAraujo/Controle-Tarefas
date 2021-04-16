@@ -1,4 +1,5 @@
 package controle;
+import java.util.*;
 
 import modelo.*;
 
@@ -8,62 +9,60 @@ public class CRUDProjeto{
     private int numProjetos=0;
 
     //cadastrando projetos e verificando se há alguma posição nula para ser preenchida
-    public void cadastroProjeto(Projeto pro){
+    public boolean cadastroProjeto(Projeto pro){
         //chave para verificar se há posição nula
+        boolean ret = false;
         int qtd=0;
-        if(getNumProjetos()==0){setArrProjetos(pro, 0);}
+        if(getNumProjetos()==0){setArrProjetos(pro, 0); ret=true;}
         else{
             for(int i=0; i<getNumProjetos(); i++){
                 if(getArrProjetos(i)==null){
                     setArrProjetos(pro, i);
                     //se houver posição nula a chave é 1
                     qtd=1;
+                    ret=true;
                     break;
                 }
                 else{
                     setArrProjetos(pro, getNumProjetos());
+                    ret=true;
                 }
             }
         }
         //caso a chave seja 0, deve incrementar o numero de projetos pois nao havia posição nula no vetor
         if(qtd==0){setNumProjetos(getNumProjetos()+1);}
-        
+
+        return ret;
     }
     
-    public void editarProjeto(Projeto pro, Projeto newPro){
-        for(int j=0; j<getNumProjetos();j++){
-            if(getArrProjetos(j) != null && pro.equals(getArrProjetos(j))){
-                setArrProjetos(newPro, j);
-            }
-        }
+    public boolean editarProjeto(Date di, Date dt, String nome, int pos){
+        getArrProjetos(pos).setNome(nome);
+        getArrProjetos(pos).setDataInicio(di);
+        getArrProjetos(pos).setDataTermino(dt);
+
+        return true;
     }
 
-    public void excluirProjeto(Projeto pro){
-        int key=0;
-        for(int j=0; j<getNumProjetos();j++){
-            if(getArrProjetos(j) != null && pro.equals(getArrProjetos(j))){
-                System.out.println("\n apagando "+pro+"...\n");
-                setArrProjetos(null, j);
-                key++;
-            }
-        }
-        if(key<1){System.out.println("Projeto "+pro+"nao encontrado\n");}
+    public boolean excluirProjeto(int ind){
+        boolean ret;
+        if(ind>=0){
+            setArrProjetos(null, ind); 
+            ret=true;
+        }else{ret=false;}
+
+        return ret;
     }
 
-    /*public void buscaProjetoCadTarefa(String name, Tarefas taref, int key){
-        for(int j=0; j<getNumProjetos();j++){
-            if(getArrProjetos(j) != null && name.equals(getArrProjetos(j).getNome())){
-                if(key==0){
-                    taref.setProjeto(getArrProjetos(j));
-                    taref.cadastrar();
-                }
-                else if(key==1){
-                    System.out.println(getArrProjetos(j).consultarTarefasCadastradas().toString());
-                }
-
+    public String[] getNomeProjeto() {
+		String[] s = new String[getNumProjetos()];
+		for(int i = 0; i < getNumProjetos(); i++) {
+            if(getArrProjetos(i)!=null){
+                s[i] = getArrProjetos(i).getNome();
             }
         }
-    } */
+		
+		return s;
+	}
 
     public int getNumProjetos(){
         return numProjetos;
@@ -93,16 +92,5 @@ public class CRUDProjeto{
 		}
 		return saida;
 	}
-    public String consultarTarefasProjeto(Projeto pro){
-        String saida = "";
-        for (int i=0; i<getNumProjetos(); i++){
-            if(getArrProjetos(i) != null && pro.equals(getArrProjetos(i))){
-                saida  = saida + pro.consultarTarefasCadastradas();
-            }
-        } 
-        
-        return saida;
-    }
-
 
 }

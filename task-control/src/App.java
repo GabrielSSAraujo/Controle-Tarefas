@@ -1,4 +1,4 @@
-import java.util.*;
+/*import java.util.*;
 
 import controle.*;
 import modelo.*;
@@ -8,6 +8,7 @@ public class App {
     static Tarefas[] taref = new Tarefas[50];
     static Projeto[] proj = new Projeto[12];
     static CRUDProjeto cad;
+    static ControleTarefas cadT;
     static Recompensa rec;
     static Sorteio sort;
     static Cronometro c;
@@ -28,6 +29,7 @@ public class App {
         Date agora = d.getTime();
 
         cad = new CRUDProjeto();
+        cadT = new ControleTarefas();
         //Criando projetos.
         proj[0]= new Projeto(agora, agora, "Projeto 1");
         proj[1]= new Projeto(agora, agora, "Projeto 2");
@@ -49,6 +51,11 @@ public class App {
         taref[1] = new Tarefas("Tarefa 2", agora, agora, 15, "Essa é a descrição da tarefa 2", "Nao Urgente", proj[0]);
         taref[2] = new Tarefas("Tarefa 3", agora, agora, 20, "Essa é a descrição da tarefa 3", "Importante", proj[1]);
         taref[3] = new Tarefas("Tarefa 4", agora, agora, 40, "Essa é a descrição da tarefa 4", "Urgente", proj[1]);
+
+        cadT.cadastroTarefa(taref[0]);
+        cadT.cadastroTarefa(taref[1]);
+
+        System.out.println(cadT.consultarTarefasCadastradas(proj[0]));
 
         //cadastrando tarefas
         taref[0].cadastrar();
@@ -115,4 +122,4 @@ public class App {
         //editando pomodoro
         pomo.setTempoDescanso(10);
     }
-}
+} */

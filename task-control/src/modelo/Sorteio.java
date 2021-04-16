@@ -3,12 +3,15 @@ package modelo;
 import java.util.Random;
 
 import controle.CRUDProjeto;
+import controle.ControleTarefas;
+import jdk.internal.platform.Container;
 
 public class Sorteio {
 
     private int tempoTrabalhado;
     private Recompensa recompensa;
     private CRUDProjeto cad;
+    private ControleTarefas cadT;
     private int residuo;
 
     public Sorteio(CRUDProjeto c, Recompensa r){

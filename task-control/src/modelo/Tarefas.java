@@ -29,7 +29,7 @@ public class Tarefas{
         setPrioridade(getPrioridade());
     }
 
-    public void cadastrar(){
+  /*  public void cadastrar(){
         //Tarefas sendo cadastradas no projeto
         Projeto pro = this.getProjeto();
         int qtd=0;
@@ -59,7 +59,7 @@ public class Tarefas{
                 proj.setTarefas(null, i);
             }
         }
-    }
+    }*/
 
     public Date getDataInicio(){
         return dataInicio;

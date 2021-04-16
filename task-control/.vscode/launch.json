@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch TesteView",
+            "request": "launch",
+            "mainClass": "view.TesteView",
+            "projectName": "task-control_63c07f8"
+        },
+        {
+            "type": "java",
+            "name": "Launch testeView",
+            "request": "launch",
+            "mainClass": "view.testeView",
+            "projectName": "task-control_63c07f8"
+        },
+        {
+            "type": "java",
             "name": "Launch Teste",
             "request": "launch",
             "mainClass": "Teste",
