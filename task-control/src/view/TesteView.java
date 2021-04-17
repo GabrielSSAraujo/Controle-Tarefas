@@ -10,10 +10,10 @@ import modelo.*;
 
 public class TesteView implements ActionListener, ListSelectionListener{
 
-    private static JFrame janela= new JFrame("Tela principal");
+    private static JFrame janela= new JFrame("Controle de tarefas");
     private static JLabel titulo = new JLabel("Controle de tarefas");
     private static JLabel lbTempoPomodoro = new JLabel("Cadastre pomodoro");
-    private static JLabel  lbProjCad = new JLabel("Projetos cadastrados");
+    private static JLabel  lbProjCad = new JLabel("Projetos cadastrados:");
     private static JLabel  lbNewProj = new JLabel("Nenhum projeto cadastrado.");
     private static JButton addProjeto = new JButton("add");
     private static JButton refreshProjeto = new JButton("Refresh");
@@ -41,22 +41,22 @@ public class TesteView implements ActionListener, ListSelectionListener{
         listaProjetos = proj.getNomeProjeto();
         
         listaProjetosCadastrados = new JList<String>(listaProjetos);
-        listaProjetosCadastrados.setBounds(80, 200, 400, 90);
+        listaProjetosCadastrados.setBounds(80, 205, 420, 90);
         listaProjetosCadastrados.addListSelectionListener(this);
 
         //setando label dos projetos cadastrados 
         lbProjCad.setFont(new Font("Arial", Font.BOLD, 14));
-        lbProjCad.setBounds(200, 170, 200, 30);
+        lbProjCad.setBounds(80, 170, 200, 30);
 
         janela.setLayout(null);
 
         //Botão adicionar projeto
         if(proj.getNumProjetos()<6){
-            addProjeto.setBounds(80, 300, 60, 25);
-            refreshProjeto.setBounds(150,300,60,25);
+            addProjeto.setBounds(200, 310, 90, 25);
+            refreshProjeto.setBounds(310, 310, 90, 25);
             janela.add(addProjeto);
 
-        }else{refreshProjeto.setBounds(80,300,60,25);}
+        }else{refreshProjeto.setBounds(310, 310, 90, 25);}
 
         janela.add(titulo);
         janela.add(lbProjCad);

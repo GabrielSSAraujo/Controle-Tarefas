@@ -15,7 +15,7 @@ import modelo.*;
 
 public class TelaDetalheProjeto implements ActionListener, ListSelectionListener{
     private static final String NullCheck = null;
-    private JFrame janela= new JFrame("Tela principal");
+    private JFrame janela= new JFrame("Controle de tarefas - detalhamento projeto");
     private JLabel titulo = new JLabel("Detalhamento Projeto");
     private JLabel labelNomeProjeto = new JLabel("Nome:");
     private JTextField valorNomeProjeto;
@@ -28,6 +28,7 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
     private String[] listaTarefas = new String[50];
     private JButton salvarProjeto = new JButton("Salvar");
     private JButton excluirProjeto = new JButton("Excluir");
+    private JButton addTarefa = new JButton("+");
     private String[] dadosProjeto = new String[6];
 
     private int opt;
@@ -68,17 +69,19 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
             listaTarefasCadastradas = new JList<String>(listaTarefas);
             
         }
-        labelNomeProjeto.setBounds(40, 70, 80, 25);
-        valorNomeProjeto.setBounds(100, 70, 380, 25);
-        labelDataInicio.setBounds(40,110,100,25);
-        valorDataInicio.setBounds(120,110,120,25);
-        labelDataTermino.setBounds(265,110,100,25);
-        valorDataTermino.setBounds(360,110,120,25);
-        labelListaTarefa.setBounds(40,170,150,25);
-        listaTarefasCadastradas.setBounds(80, 200, 400, 90);
+        labelNomeProjeto.setBounds(80, 70, 60, 25);
+        valorNomeProjeto.setBounds(140, 70, 360, 25);
+        labelDataInicio.setBounds(80,110,80,25);
+        valorDataInicio.setBounds(165,110,100,25);
+        labelDataTermino.setBounds(300,110,90,25);
+        valorDataTermino.setBounds(400,110,100,25);
+        labelListaTarefa.setBounds(80,150,150,25);
+        addTarefa.setBounds(80,180,45,20
+        );
+        listaTarefasCadastradas.setBounds(80, 210, 420, 90);
         listaTarefasCadastradas.addListSelectionListener(this);
-        salvarProjeto.setBounds(200, 300, 90, 25);
-        excluirProjeto.setBounds(310, 300, 90, 25);
+        salvarProjeto.setBounds(200, 310, 90, 25);
+        excluirProjeto.setBounds(310, 310, 90, 25);
         
         janela.add(titulo);
         janela.add(labelNomeProjeto);
@@ -88,12 +91,14 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
         janela.add(labelDataTermino);
         janela.add(valorDataTermino);
         janela.add(labelListaTarefa);
+        janela.add(addTarefa);
         janela.add(listaTarefasCadastradas);
         janela.add(salvarProjeto);
         janela.add(excluirProjeto);
 
         salvarProjeto.addActionListener(this);
         excluirProjeto.addActionListener(this);
+        addTarefa.addActionListener(this);
 
 
     }
@@ -110,41 +115,44 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
                 dadosProjeto[3] = valorNomeProjeto.getText();
 
                 if(opt==1){
-                    Projeto projeto = new Projeto(new SimpleDateFormat("dd/MM/yyyy").parse("11/03/2021"), 
-                    new SimpleDateFormat("dd/MM/yyyy").parse("11/03/2021"), dadosProjeto[3]);
+                    Projeto projeto = new Projeto(new SimpleDateFormat("dd/mm/yyyy").parse(dadosProjeto[1]), 
+                    new SimpleDateFormat("dd/mm/yyyy").parse(dadosProjeto[1]), dadosProjeto[3]);
                     ret = p.cadastroProjeto(projeto);
                 }else{
-                    ret = p.editarProjeto(new SimpleDateFormat("dd/MM/yyyy").parse("11/03/2021"), 
-                    new SimpleDateFormat("dd/MM/yyyy").parse("11/05/2021"), dadosProjeto[3],ind);
+                    ret = p.editarProjeto(new SimpleDateFormat("dd/MM/yyyy").parse(dadosProjeto[1]), 
+                    new SimpleDateFormat("dd/MM/yyyy").parse(dadosProjeto[1]), dadosProjeto[3],ind);
                 }
                 if(ret) {
 					sucessoCadastro();
 				}
 				else erroCadastro();
-
-
             } catch(NullPointerException ex){
                 erroCadastro();
             } catch (ParseException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
+                erroDate();
             }
-            
         }
         
-        if(src == excluirProjeto){
-            boolean ret;
-            ret = p.excluirProjeto(ind);
-            if(ret){sucessoExcluir();}
-            else{erroExcluir();}
+        else if(src == excluirProjeto){
+                boolean ret;
+                ret = p.excluirProjeto(ind);
+                if(ret){sucessoExcluir();}
+                else{erroExcluir();}
+        }
+        
+        else if(src==addTarefa){
+            new TelaDetalheTarefa().mostrarDadosTarefa(ct, listaTarefasCadastradas.getSelectedIndex(),1, p.getArrProjetos(ind));
         }
     }
     public void valueChanged(ListSelectionEvent e) {
         Object src = e.getSource();
 
-       /* if(e.getValueIsAdjusting() && src == listaTarefasCadastradas) {
-			new TelaDetalheProjeto().MostrarDadosProjeto( proj,	listaTarefasCadastradas.getSelectedIndex(),2,cadTaref);
-		}*/
+       if(e.getValueIsAdjusting() && src == listaTarefasCadastradas) {
+           //envio do indice da tarefa, o controle de tarefas e do seletor 1 - adicionar nova 2 editar;
+			new TelaDetalheTarefa().mostrarDadosTarefa(ct, listaTarefasCadastradas.getSelectedIndex(),2, p.getArrProjetos(ind));
+       }
         
     }
 
@@ -165,6 +173,11 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
     }
     public void erroExcluir(){
         JOptionPane.showMessageDialog(null, "Erro ao excluir projeto!", null, 
+				JOptionPane.ERROR_MESSAGE);
+		janela.dispose();
+    }
+    public void erroDate(){
+        JOptionPane.showMessageDialog(null, "Formato data invalido (faça: dd/mm/yyyy)", null, 
 				JOptionPane.ERROR_MESSAGE);
 		janela.dispose();
     }

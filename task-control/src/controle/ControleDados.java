@@ -12,7 +12,7 @@ public class ControleDados {
             cadPro.cadastroProjeto(projeto[i]);
 
             for(int j = 0; j <2; j++){
-                tarefas[j] = new Tarefas("tarefas "+j+i , d, d, 10*(i+j), "descrição tarefa"+i+j, "URGENTE", projeto[i]);
+                tarefas[j] = new Tarefas("tarefas "+j+i , d, d, 10*(i+j), "descrição tarefa"+i+j, "NAO URGENTE", projeto[i]);
                 cadTar.cadastroTarefa(tarefas[j]);
             }
 

@@ -7,8 +7,9 @@ public class ControleTarefas {
     private Tarefas[] tarefasProjeto = new Tarefas[50];
     private int numTarefas = 0;
 
-    public void cadastroTarefa(Tarefas t){
+    public boolean cadastroTarefa(Tarefas t){
         int qtd=0;
+        boolean ret=false;
 
         if(getNumTarefas()==0){setTarefas(t, 0);}
         else{
@@ -16,16 +17,20 @@ public class ControleTarefas {
                 if(getTarefas(i)==null){
                     setTarefas(t, i);
                     qtd=1;
+                    ret=true;
                     break;
                 }
                 else{
                     setTarefas(t, getNumTarefas());
+                    ret=true;
                 }
             }
         }
         if(qtd==0){
             setNumTarefas(getNumTarefas()+1); 
+            ret=true;
         } 
+        return ret;
     }
 
     public void excluirTarefa(Tarefas t){
