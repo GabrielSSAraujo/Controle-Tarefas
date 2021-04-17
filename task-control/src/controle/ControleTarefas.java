@@ -33,12 +33,14 @@ public class ControleTarefas {
         return ret;
     }
 
-    public void excluirTarefa(Tarefas t){
-        for(int i =0;i<getNumTarefas();i++){
-            if(getTarefas(i).equals(t)){
-                setTarefas(null, i);
-            }
-        }
+    public boolean excluirTarefa(int indice){
+        boolean ret;
+        if(indice>=0){
+            setTarefas(null, indice); 
+            ret=true;
+        }else{ret=false;}
+
+        return ret;
     }
 
     public String[] getNomeTarefasProjeto(Projeto proj) {

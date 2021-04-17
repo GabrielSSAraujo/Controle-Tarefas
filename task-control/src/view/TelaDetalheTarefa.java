@@ -29,6 +29,7 @@ public class TelaDetalheTarefa implements ActionListener {
     private JTextField valorTempoEstimado;
     private JButton cadastrarTarefa = new JButton("Cadastrar"); 
     private JButton excluirTarefa = new JButton("Excluir"); 
+
     
 
     private int op;
@@ -143,6 +144,14 @@ public class TelaDetalheTarefa implements ActionListener {
                 e1.printStackTrace();
             }
         }
+        
+        else if(src == excluirTarefa){
+            boolean ret;
+                ret = conT.excluirTarefa(ind);
+                if(ret){sucessoExcluirTar();}
+                else{erroExcluirTar();}
+        }
+    
     }
 
     public void sucessoCadastroTar(){
@@ -152,6 +161,16 @@ public class TelaDetalheTarefa implements ActionListener {
     }
     public void erroCadastroTar(){
         JOptionPane.showMessageDialog(null, "Erro ao cadastrar tarefa!", null, 
+				JOptionPane.ERROR_MESSAGE);
+		janela.dispose();
+    }
+    public void sucessoExcluirTar(){
+        JOptionPane.showMessageDialog(null, "Projeto excluido com sucesso!", null, 
+				JOptionPane.INFORMATION_MESSAGE);
+		janela.dispose();
+    }
+    public void erroExcluirTar(){
+        JOptionPane.showMessageDialog(null, "Erro ao excluir projeto!", null, 
 				JOptionPane.ERROR_MESSAGE);
 		janela.dispose();
     }

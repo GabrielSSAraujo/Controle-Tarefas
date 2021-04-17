@@ -28,6 +28,7 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
     private String[] listaTarefas = new String[50];
     private JButton salvarProjeto = new JButton("Salvar");
     private JButton excluirProjeto = new JButton("Excluir");
+    private JButton atualizarProjeto = new JButton("Atualizar");
     private JButton addTarefa = new JButton("+");
     private String[] dadosProjeto = new String[6];
 
@@ -42,7 +43,6 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
         p = proj;
         ct = cadTar;
         ind = indice;
-        
 
         //cinfig da janela
         janela.setVisible(true);
@@ -53,21 +53,27 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
         titulo.setFont(new Font("Arial", Font.BOLD, 18));
 		titulo.setBounds(200, 10, 200, 30);
 
-        //lista de tarefas do projeto
-
         if(menu == 2){
             valorNomeProjeto = new JTextField(proj.getArrProjetos(indice).getNome(), 300);
             valorDataInicio = new JTextField(proj.getArrProjetos(indice).getDataInicio().toString(),300);
             valorDataTermino = new JTextField(proj.getArrProjetos(indice).getDataTermino().toString(),300);
             listaTarefas = cadTar.getNomeTarefasProjeto(proj.getArrProjetos(indice));
             listaTarefasCadastradas = new JList<String>(listaTarefas);
+            salvarProjeto.setBounds(135, 310, 90, 25);
+            excluirProjeto.setBounds(245, 310, 90, 25);
         }
         else{
             valorNomeProjeto = new JTextField();
             valorDataInicio = new JTextField();
             valorDataTermino= new JTextField();
             listaTarefasCadastradas = new JList<String>(listaTarefas);
-            
+            addTarefa.setVisible(false);
+            labelListaTarefa.setVisible(false);
+            listaTarefasCadastradas.setVisible(false);
+            atualizarProjeto.setVisible(false);
+            //realocar botões qunado não houver botão de atualizar
+            excluirProjeto.setBounds(200, 310, 90, 25);
+            salvarProjeto.setBounds(310, 310, 90, 25);
         }
         labelNomeProjeto.setBounds(80, 70, 60, 25);
         valorNomeProjeto.setBounds(140, 70, 360, 25);
@@ -76,12 +82,11 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
         labelDataTermino.setBounds(300,110,90,25);
         valorDataTermino.setBounds(400,110,100,25);
         labelListaTarefa.setBounds(80,150,150,25);
-        addTarefa.setBounds(80,180,45,20
-        );
+        addTarefa.setBounds(80,180,45,20);
         listaTarefasCadastradas.setBounds(80, 210, 420, 90);
         listaTarefasCadastradas.addListSelectionListener(this);
-        salvarProjeto.setBounds(200, 310, 90, 25);
-        excluirProjeto.setBounds(310, 310, 90, 25);
+
+        atualizarProjeto.setBounds(355, 310, 90, 25);
         
         janela.add(titulo);
         janela.add(labelNomeProjeto);
@@ -95,13 +100,15 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
         janela.add(listaTarefasCadastradas);
         janela.add(salvarProjeto);
         janela.add(excluirProjeto);
+        janela.add(atualizarProjeto);
 
         salvarProjeto.addActionListener(this);
         excluirProjeto.addActionListener(this);
+        atualizarProjeto.addActionListener(this);
         addTarefa.addActionListener(this);
 
-
     }
+    
     public void actionPerformed(ActionEvent e){
         Object src = e.getSource();
 
@@ -131,7 +138,7 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
             } catch (ParseException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
-                erroDate();
+                erroCadastro();
             }
         }
         
@@ -142,8 +149,13 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
                 else{erroExcluir();}
         }
         
-        else if(src==addTarefa){
+        else if(src == addTarefa){
             new TelaDetalheTarefa().mostrarDadosTarefa(ct, listaTarefasCadastradas.getSelectedIndex(),1, p.getArrProjetos(ind));
+        }
+        
+        else if(src == atualizarProjeto){
+            listaTarefasCadastradas.setListData(ct.getNomeTarefasProjeto(p.getArrProjetos(ind)));			
+			listaTarefasCadastradas.updateUI();
         }
     }
     public void valueChanged(ListSelectionEvent e) {
@@ -153,7 +165,6 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
            //envio do indice da tarefa, o controle de tarefas e do seletor 1 - adicionar nova 2 editar;
 			new TelaDetalheTarefa().mostrarDadosTarefa(ct, listaTarefasCadastradas.getSelectedIndex(),2, p.getArrProjetos(ind));
        }
-        
     }
 
     public void sucessoCadastro(){
