@@ -53,9 +53,32 @@ public class ControleTarefas {
                 j++;
             }
 		}
-		
 		return s;
 	}
+
+    public String[] getAllTasks(){
+        String[] s = new String[getNumTarefas()];
+
+        for(int i = 0; i<getNumTarefas(); i++){
+            if(getTarefas(i)!=null){
+                s[i]=String.valueOf(i)+getTarefas(i).getNome();
+            }
+
+        }
+        return s;
+    }
+
+    //problema: comparei os dois são string e os dois tem o mesmo valor mas nao entra no if(??) 
+    public String[] buscarTarefaNome(String nomeTarefa){
+        String[] s = new String[getNumTarefas()];
+        for(int i = 0; i<getNumTarefas(); i++){
+            if(getTarefas(i)!=null && String.valueOf(tarefasProjeto[i]) == nomeTarefa){
+                System.out.println("entrou");
+                s[i] = getTarefas(i).getNome();
+            }
+        }
+        return s;
+    }
 
     public int getNumTarefas(){
         return numTarefas;

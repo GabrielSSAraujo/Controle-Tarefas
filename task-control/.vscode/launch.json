@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch TelaPrincipal",
+            "request": "launch",
+            "mainClass": "view.TelaPrincipal",
+            "projectName": "task-control_63c07f8"
+        },
+        {
+            "type": "java",
             "name": "Launch TesteView",
             "request": "launch",
             "mainClass": "view.TesteView",

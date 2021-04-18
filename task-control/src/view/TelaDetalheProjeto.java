@@ -36,7 +36,7 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
     private int ind;
     private CRUDProjeto p;
     private ControleTarefas ct;
-
+    private SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
     public void MostrarDadosProjeto(CRUDProjeto proj, int indice,int menu, ControleTarefas cadTar){
 
         opt = menu;
@@ -55,8 +55,8 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
 
         if(menu == 2){
             valorNomeProjeto = new JTextField(proj.getArrProjetos(indice).getNome(), 300);
-            valorDataInicio = new JTextField(proj.getArrProjetos(indice).getDataInicio().toString(),300);
-            valorDataTermino = new JTextField(proj.getArrProjetos(indice).getDataTermino().toString(),300);
+            valorDataInicio = new JTextField(formatador.format(proj.getArrProjetos(indice).getDataInicio()).toString(),300);
+            valorDataTermino = new JTextField(formatador.format(proj.getArrProjetos(indice).getDataTermino()).toString(),300);
             listaTarefas = cadTar.getNomeTarefasProjeto(proj.getArrProjetos(indice));
             listaTarefasCadastradas = new JList<String>(listaTarefas);
             salvarProjeto.setBounds(135, 310, 90, 25);
@@ -72,8 +72,8 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
             listaTarefasCadastradas.setVisible(false);
             atualizarProjeto.setVisible(false);
             //realocar botões qunado não houver botão de atualizar
-            excluirProjeto.setBounds(200, 310, 90, 25);
-            salvarProjeto.setBounds(310, 310, 90, 25);
+            salvarProjeto.setBounds(200, 310, 90, 25);
+            excluirProjeto.setBounds(310, 310, 90, 25);
         }
         labelNomeProjeto.setBounds(80, 70, 60, 25);
         valorNomeProjeto.setBounds(140, 70, 360, 25);

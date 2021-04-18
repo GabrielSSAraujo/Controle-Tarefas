@@ -30,18 +30,20 @@ public class TelaDetalheTarefa implements ActionListener {
     private JButton cadastrarTarefa = new JButton("Cadastrar"); 
     private JButton excluirTarefa = new JButton("Excluir"); 
 
-    
-
     private int op;
     private int ind;
     private ControleTarefas conT;
     private String[] dadosTarefa = new String[10];
     private Projeto p;
+
     
     String[] choices = { "UGENTE", "NAO URGENTE", "ADIAVEL", "NÃO IMPORTANTE"};
     final JComboBox<String> cb = new JComboBox<String>(choices);
     
     public void mostrarDadosTarefa(ControleTarefas ct, int indice, int opt, Projeto projeto){
+
+        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+
         op = opt;
         ind = indice;
         conT = ct;
@@ -58,8 +60,8 @@ public class TelaDetalheTarefa implements ActionListener {
 
         if(opt==2){
             valorNomeTarefa = new JTextField(ct.getTarefas(indice).getNome());
-            valorDi = new JTextField(ct.getTarefas(indice).getDataInicio().toString());
-            valorDt = new JTextField(ct.getTarefas(indice).getDataTermino().toString());
+            valorDi = new JTextField(formatador.format(ct.getTarefas(indice).getDataInicio()).toString());
+            valorDt = new JTextField(formatador.format(ct.getTarefas(indice).getDataTermino()).toString());
             valorDescricao = new JTextArea(ct.getTarefas(indice).getDescricao());
             valorPrioridade = new JTextField(ct.getTarefas(indice).getPrioridade());
             valorTempoEstimado = new JTextField(String.valueOf(ct.getTarefas(indice).getTempoEstimado()));

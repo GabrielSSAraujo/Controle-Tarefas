@@ -1,4 +1,5 @@
 package controle;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import modelo.*;
@@ -7,6 +8,8 @@ public class ControleDados {
 
     public void filWithSomeData(CRUDProjeto cadPro, Projeto[] projeto, ControleTarefas cadTar, Tarefas[] tarefas ){
         Date d = Calendar.getInstance().getTime();
+        SimpleDateFormat formatador = new SimpleDateFormat("dd-MM-yyyy");
+        formatador.format(d);
         for(int i = 0; i < 3; i++){
             projeto[i] = new Projeto(d,d,"projeto "+i);
             cadPro.cadastroProjeto(projeto[i]);
