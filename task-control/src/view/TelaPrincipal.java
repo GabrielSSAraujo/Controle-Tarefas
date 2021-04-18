@@ -2,28 +2,23 @@ package view;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.swing.text.AttributeSet.FontAttribute;
-
 import java.awt.event.*;
-import java.util.*;
 import controle.*;
 import modelo.*;
 
 public class TelaPrincipal implements ActionListener, ListSelectionListener{
 
     private JFrame janela= new JFrame("Controle de tarefas");
-    private JLabel lbTempoPomodoro = new JLabel("Cadastre pomodoro");
     private JLabel  lbProjCad = new JLabel("Projetos cadastrados:");
-    private JLabel  lbNewProj = new JLabel("Nenhum projeto cadastrado.");
     private static JButton addProjeto = new JButton("Cadastrar");
     private static JButton refreshProjeto = new JButton("Atualizar");
     private JList<String> listaProjetosCadastrados;
     private String[] listaProjetos = new String[50];
-    public static CRUDProjeto proj = new CRUDProjeto();
-    public static ControleTarefas cadTaref = new ControleTarefas();
-    public static Projeto[] project = new Projeto[6];
-    public static Tarefas[] tarefa = new Tarefas[20];
-    public static ControleDados cadDados = new ControleDados();
+    public  ControleProjeto proj = new ControleProjeto();
+    public  ControleTarefas cadTaref = new ControleTarefas();
+    public  Projeto[] project = new Projeto[6];
+    public  Tarefas[] tarefa = new Tarefas[20];
+    public  ControleDados cadDados = new ControleDados();
     private Cronometro crono = new Cronometro();
 
     private JLabel labelConometro = new JLabel("00:00:00");

@@ -10,7 +10,7 @@ import javax.swing.event.*;
 
 import controle.*;
 
-import controle.CRUDProjeto;
+import controle.ControleProjeto;
 import modelo.*;
 
 public class TelaDetalheProjeto implements ActionListener, ListSelectionListener{
@@ -31,13 +31,13 @@ public class TelaDetalheProjeto implements ActionListener, ListSelectionListener
     private JButton atualizarProjeto = new JButton("Atualizar");
     private JButton addTarefa = new JButton("+");
     private String[] dadosProjeto = new String[6];
-
     private int opt;
     private int ind;
-    private CRUDProjeto p;
+    private ControleProjeto p;
     private ControleTarefas ct;
     private SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-    public void MostrarDadosProjeto(CRUDProjeto proj, int indice,int menu, ControleTarefas cadTar){
+    
+    public void MostrarDadosProjeto(ControleProjeto proj, int indice,int menu, ControleTarefas cadTar){
 
         opt = menu;
         p = proj;

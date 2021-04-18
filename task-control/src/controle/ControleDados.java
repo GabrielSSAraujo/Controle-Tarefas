@@ -5,8 +5,17 @@ import java.util.*;
 import modelo.*;
 
 public class ControleDados {
+    private ControleProjeto cp;
+    private Projeto[] p;
+    private ControleTarefas ct;
+    private Tarefas[] t;
 
-    public void filWithSomeData(CRUDProjeto cadPro, Projeto[] projeto, ControleTarefas cadTar, Tarefas[] tarefas ){
+    public void filWithSomeData(ControleProjeto cadPro, Projeto[] projeto, ControleTarefas cadTar, Tarefas[] tarefas ){
+        cp = cadPro;
+        p = projeto;
+        ct = cadTar;
+        t = tarefas;
+
         Date d = Calendar.getInstance().getTime();
         SimpleDateFormat formatador = new SimpleDateFormat("dd-MM-yyyy");
         formatador.format(d);

@@ -2,11 +2,9 @@ package view;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;  
+import java.text.SimpleDateFormat; 
 
 import javax.swing.*;
-import javax.swing.event.*;
 
 import controle.*;
 import modelo.*;

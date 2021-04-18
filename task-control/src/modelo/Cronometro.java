@@ -66,6 +66,7 @@ public class Cronometro {
             rodando=true;
         }
     }
+    
     //finaliza contagem e zera contaor
     public void finCrono(){
         if(rodando){
