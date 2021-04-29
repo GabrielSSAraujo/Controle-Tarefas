@@ -1,8 +1,6 @@
 package view;
 import java.awt.*;
 import java.awt.event.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat; 
 
 import javax.swing.*;
 
@@ -40,8 +38,6 @@ public class TelaDetalheTarefa implements ActionListener {
     
     public void mostrarDadosTarefa(ControleTarefas ct, int indice, int opt, Projeto projeto){
 
-        SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-
         op = opt;
         ind = indice;
         conT = ct;
@@ -58,8 +54,8 @@ public class TelaDetalheTarefa implements ActionListener {
 
         if(opt==2){
             valorNomeTarefa = new JTextField(ct.getTarefas(indice).getNome());
-            valorDi = new JTextField(formatador.format(ct.getTarefas(indice).getDataInicio()).toString());
-            valorDt = new JTextField(formatador.format(ct.getTarefas(indice).getDataTermino()).toString());
+            valorDi = new JTextField(ct.getTarefas(indice).getDataInicio().toString());
+            valorDt = new JTextField(ct.getTarefas(indice).getDataTermino().toString());
             valorDescricao = new JTextArea(ct.getTarefas(indice).getDescricao());
             valorPrioridade = new JTextField(ct.getTarefas(indice).getPrioridade());
             valorTempoEstimado = new JTextField(String.valueOf(ct.getTarefas(indice).getTempoEstimado()));
@@ -125,8 +121,7 @@ public class TelaDetalheTarefa implements ActionListener {
 
                 if(op==1){
 
-                    Tarefas tarefa = new Tarefas(dadosTarefa[1], new SimpleDateFormat("dd/mm/yyyy").parse(dadosTarefa[2]),
-                    new SimpleDateFormat("dd/mm/yyyy").parse(dadosTarefa[3]), Integer.valueOf(dadosTarefa[5]), dadosTarefa[6], 
+                    Tarefas tarefa = new Tarefas(dadosTarefa[1],dadosTarefa[2],dadosTarefa[3], Integer.valueOf(dadosTarefa[5]), dadosTarefa[6], 
                     dadosTarefa[4],p);
 
                     ret = conT.cadastroTarefa(tarefa);
@@ -137,9 +132,6 @@ public class TelaDetalheTarefa implements ActionListener {
 				}else erroCadastroTar();
 
             } catch (NumberFormatException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            } catch (ParseException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
