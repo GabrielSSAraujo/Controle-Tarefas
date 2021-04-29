@@ -1,11 +1,22 @@
 package modelo;
 
-import java.util.Date;
-
+/**
+ * Cria tarefa comas seguintes informações:
+ * (1) data de inicio
+ * (2) data de termino
+ * (3) nome da tarefa
+ * (4) tempo estimado para sua realização
+ * (5) tempo real gasto que é calculado e atualizado conforme o tempo de trabalho
+ * (6) descrição da tarefa
+ * (7) prioridade 
+ * (8) projeto em que a tarefa será cadastrada
+ * @author Gabriel Santos
+ * @version 1.0 (27/04)
+ */
 public class Tarefas{
 
-    private Date dataInicio;
-    private Date dataTermino;
+    private String dataInicio;
+    private String dataTermino;
     private String nome;
     private int tempoEstimado;
     private int tempReal = 0;
@@ -13,7 +24,18 @@ public class Tarefas{
     private String prioridade;
     private Projeto projeto;
 
-    public Tarefas(String nt, Date di, Date df, int te, String d, String pr,Projeto p){
+    /**
+     *  /**
+     * Seta os dados necessarios para definição da tarefa
+     * @param nomeTarefa
+     * @param dataInicio
+     * @param dataFinal
+     * @param tempoEstimado
+     * @param descriçao
+     * @param prioridade
+     * @param projeto
+     */
+    public Tarefas(String nt, String di, String df, int te, String d, String pr,Projeto p){
         dataInicio= di;
         dataTermino = df;
         tempoEstimado=te;
@@ -61,16 +83,16 @@ public class Tarefas{
         }
     }*/
 
-    public Date getDataInicio(){
+    public String getDataInicio(){
         return dataInicio;
     }
-    public void setDataInicio(Date dataInicio){
+    public void setDataInicio(String dataInicio){
         this.dataInicio=dataInicio;
     }
-    public Date getDataTermino(){
+    public String getDataTermino(){
         return dataTermino;
     }
-    public void setDataTermino(Date dataTermino){
+    public void setDataTermino(String dataTermino){
         this.dataTermino=dataTermino;
     }
     public String getNome(){

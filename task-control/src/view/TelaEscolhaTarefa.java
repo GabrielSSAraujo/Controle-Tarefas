@@ -3,12 +3,8 @@ package view;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.swing.text.AttributeSet.FontAttribute;
-
 import java.awt.event.*;
-import java.util.*;
 import controle.*;
-import modelo.*;
 
 public class TelaEscolhaTarefa implements ActionListener, ListSelectionListener {
 

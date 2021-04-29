@@ -1,0 +1,13 @@
+,,,
+ID,1,2,3
+Pacote,controle,controle,controle
+Classe,ControleTarefas,ControleProjeto,ControleTarefas
+Método,cadastroTarefas,cadastroProjeto,cadastrarTarefas
+,,,
+,,,
+ID,Açao,Resultado esperado,Resultado obtido
+1,Iiniciar cronometro,TRUE,TRUE
+2,Cadastrar projeto,TRUE,TRUE
+3,Cadastrar tarefa,TRUE,TRUE
+4,Excluir Projeto,TRUE,TRUE
+5,Editar Projeto,TRUE,TRUE

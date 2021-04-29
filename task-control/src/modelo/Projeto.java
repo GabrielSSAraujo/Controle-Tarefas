@@ -1,29 +1,38 @@
 package modelo;
-import java.util.Date;
 
+/**
+ * Cria projeto com informações de inicio e termino
+ * @author Gabriel Santos
+ * @version 1.0 (27/04)
+ */
 public class Projeto{
 
-    private Date dataInicio;
-    private Date dataTermino;
+    private String dataInicio;
+    private String dataTermino;
     private String nome;
 
-    //construtor
-    public Projeto(Date di, Date df, String n){
+    /**
+     * Seta os dados de inicio termino e nome para criação do projeto
+     * @param dataInicio
+     * @param dataTermino
+     * @param nomeProjeto
+     */
+    public Projeto(String di, String df, String n){
         dataInicio = di;
         dataTermino = df;
         nome = n;
     }
 
-    public Date getDataInicio(){
+    public String getDataInicio(){
         return dataInicio;
     }
-    public void setDataInicio(Date dataInicio){
+    public void setDataInicio(String dataInicio){
         this.dataInicio=dataInicio;
     }
-    public Date getDataTermino(){
+    public String getDataTermino(){
         return dataTermino;
     }
-    public void setDataTermino(Date dataTermino){
+    public void setDataTermino(String dataTermino){
         this.dataTermino=dataTermino;
     }
     public String getNome(){

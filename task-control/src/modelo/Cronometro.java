@@ -3,12 +3,16 @@ package modelo;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.EventQueue;
+
+/**
+ * Contar tempo em que cada tarefa leva para ser realizada
+ * @author Gabriel Santos
+ * @version 1.0 (27/04)
+ */
 
 public class Cronometro {
     private Timer tm;
@@ -19,6 +23,11 @@ public class Cronometro {
     private int contador2;
     private int key;
     
+    /**
+     * Cria contador
+     * @param tmp
+     * @param t
+     */
     public void cronometro(int tmp,Tarefas t){
         taref =t;
         tempControl = tmp;
@@ -32,8 +41,15 @@ public class Cronometro {
         });
     } 
 
-    //inicia contador(por enquanto finaliza a contagem com um inteiro enviado do app)
-    public void initCrono(JLabel contagem, Pomodoro pomo){
+    /**
+     * Inicia contagem de tempo onde:
+     * (1) atualiza um Jlabel contagem 
+     * (2) chama método notificar quando o tempo atinge o pomodoro cadastrado
+     * @param contagem
+     * @param pomodoro
+     * @return
+     */
+    public boolean initCrono(JLabel contagem, Pomodoro pomo){
         if(!rodando){
             setTm(new Timer());
             getTm().scheduleAtFixedRate(new TimerTask(){
@@ -65,9 +81,15 @@ public class Cronometro {
             }, 1000,1000);
             rodando=true;
         }
+        if(getContador()>0){
+            return true;
+        }else{return false;}
+
     }
     
-    //finaliza contagem e zera contaor
+    /**
+     * Para o cronometro e seta contador da tarefa como 0 
+     */
     public void finCrono(){
         if(rodando){
             getTm().cancel();//esta com problema ao recomeçar isso aqui nao permite iniciar novamente o cronometro

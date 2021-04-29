@@ -1,18 +1,28 @@
 package modelo;
 
+/**
+ * Cria pomodoro de trabalho
+ * @author Gabriel Santos
+ * @version 1.0 (27/04)
+ */
 public class Pomodoro {
     private int tempoTrabalho;
     private int tempoDescanso;
 
+    /**
+     * Seta:
+     * (1) tempo a ser trabalhado
+     * (2) tempo de descanso
+     * @param tempoTrabalho
+     * @param tempoDescanso
+     */
     public Pomodoro(int tt, int td){
         tempoTrabalho = tt;
         tempoDescanso = td;
 
         setTempoDescanso(getTempoDescanso());
         setTempoTrabalho(getTempoTrabalho());
-    }
-    //Ao iniciar tempo da tarefa inicia também a contagem do pomodoro
-            //não deu tempo de implementar.
+    }    
         
     public int getTempoTrabalho(){
         return tempoTrabalho;
