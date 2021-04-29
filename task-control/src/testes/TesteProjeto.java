@@ -6,6 +6,11 @@ import org.junit.Test;
 import controle.ControleProjeto;
 import modelo.Projeto;
 
+/**
+ * Criacao de testes para validacao do código
+ * @author Gabriel Santos
+ * @version 1.0 (27/04)
+ */
 public class TesteProjeto {
 
 
@@ -17,6 +22,9 @@ public class TesteProjeto {
     boolean expectedResultBol = true;
 
     @Test
+    /**
+     * Teste do cadastro de projetos
+     */
     public void testCadastro(){
 
         //Cadastrando projeto testeJunit com data de inÃ­cio: 02/05/2021 termino: 23/06/2021
@@ -26,6 +34,9 @@ public class TesteProjeto {
         assertEquals((boolean)expectedResultBol,(boolean)result);
     }
     @Test
+    /**
+     * Teste de edição de projetos
+     */
     public void testEditar(){
         //cadastrando projeto a ser editado
         contP.cadastroProjeto(proj);
@@ -38,6 +49,9 @@ public class TesteProjeto {
     }
 
     @Test
+    /**
+     * Teste exclusão de projetos
+     */
     public void testExcluir(){
 
         //cadastrando projeto a ser excluido

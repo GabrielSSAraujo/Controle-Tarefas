@@ -7,6 +7,11 @@ import controle.ControleTarefas;
 import modelo.Projeto;
 import modelo.Tarefas;
 
+/**
+ * Criacao de testes para validacao de tarefas cadastradas
+ * @author Gabriel Santos
+ * @version 1.0 (27/04)
+ */
 public class TesteTarefas {
 
     ControleProjeto contP = new ControleProjeto();
@@ -17,6 +22,9 @@ public class TesteTarefas {
     boolean expectedResult= true;
 
     @Test
+    /**
+     * Testa o cadastro de tarefas que retorna um boolean
+     */
     public void testCadastroTarefa(){
 
         boolean result = cadT.cadastroTarefa(taref);

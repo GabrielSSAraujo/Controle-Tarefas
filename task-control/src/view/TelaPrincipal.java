@@ -6,6 +6,14 @@ import java.awt.event.*;
 import controle.*;
 import modelo.*;
 
+/**
+ * Criacao da interface com usuario mostrando:
+ * (1) projetos
+ * (2) controle de tempo 
+ * (3) cadastro de pomodoros 
+ * @author Gabriel Santos
+ * @version 1.0 (27/04)
+ */
 public class TelaPrincipal implements ActionListener, ListSelectionListener{
 
     private JFrame janela= new JFrame("Controle de tarefas");
@@ -34,6 +42,9 @@ public class TelaPrincipal implements ActionListener, ListSelectionListener{
     
     private Pomodoro pomodoro=new Pomodoro(30, 5);
 
+    /**
+     * Tela responsavel por listar projetos cadastrados,tempo decorrido e pomodoros cadastrados
+     */
     public TelaPrincipal() {
 
         //cadastrando projetos teste
@@ -106,7 +117,13 @@ public class TelaPrincipal implements ActionListener, ListSelectionListener{
         stopCrono.addActionListener(opt); 
         cadastraPomodoro.addActionListener(opt);
     } 
-
+    
+    /**
+     * Monitora eventos:
+     * (1) atualização
+     * (2) cadastro de novos projetos
+     * (3) cadastro de novo pomodoro
+     */
     public void actionPerformed(ActionEvent e){
         Object src = e.getSource();
         
@@ -132,6 +149,9 @@ public class TelaPrincipal implements ActionListener, ListSelectionListener{
         }
     }
 
+    /**
+     * Monitora eventos do JList na selecao de um projeto
+     */
     public void valueChanged(ListSelectionEvent e) {
         Object src = e.getSource();
 

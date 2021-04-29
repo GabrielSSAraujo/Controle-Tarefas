@@ -51,6 +51,10 @@ public class Tarefas{
         setPrioridade(getPrioridade());
     }
 
+  
+  /** 
+   * @return String
+   */
   /*  public void cadastrar(){
         //Tarefas sendo cadastradas no projeto
         Projeto pro = this.getProjeto();
@@ -86,52 +90,116 @@ public class Tarefas{
     public String getDataInicio(){
         return dataInicio;
     }
+    
+    /** 
+     * @param dataInicio
+     */
     public void setDataInicio(String dataInicio){
         this.dataInicio=dataInicio;
     }
+    
+    /** 
+     * @return String
+     */
     public String getDataTermino(){
         return dataTermino;
     }
+    
+    /** 
+     * @param dataTermino
+     */
     public void setDataTermino(String dataTermino){
         this.dataTermino=dataTermino;
     }
+    
+    /** 
+     * @return String
+     */
     public String getNome(){
         return nome;
     }
+    
+    /** 
+     * @param nome
+     */
     public void setNome(String nome){
         this.nome=nome;
     }
+    
+    /** 
+     * @return int
+     */
     public int getTempoEstimado(){
         return tempoEstimado;
     }
+    
+    /** 
+     * @param tempoEstimado
+     */
     public void setTempoEstimado(int tempoEstimado){
         this.tempoEstimado =tempoEstimado;
     }
+    
+    /** 
+     * @return int
+     */
     public int getTempReal(){
         return tempReal;
     }
+    
+    /** 
+     * @param tempReal
+     */
     public void setTempReal(int tempReal){
         this.tempReal = tempReal;
     }
+    
+    /** 
+     * @return String
+     */
     public String getDescricao(){
         return descricao;
     }
+    
+    /** 
+     * @param descricao
+     */
     public void setDescricao(String descricao){
         this.descricao = descricao;
     }
+    
+    /** 
+     * @return String
+     */
     public String getPrioridade(){
         return prioridade;
     }
+    
+    /** 
+     * @param prioridade
+     */
     public void setPrioridade(String prioridade){
         this.prioridade = prioridade;
     }
+    
+    /** 
+     * @return Projeto
+     */
     public Projeto getProjeto(){
         return projeto;
     }
+    
+    /** 
+     * @param projeto
+     */
     public void setProjeto(Projeto projeto){
         this.projeto = projeto;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString(){
         return " Nome da tarefa: "+getNome()+", Descrição: "+ getDescricao()+", O tempo estimado: "+getTempoEstimado()+

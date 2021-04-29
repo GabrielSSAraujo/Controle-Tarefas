@@ -7,6 +7,11 @@ import javax.swing.*;
 import controle.*;
 import modelo.*;
 
+/**
+ * Criacao da interface com usuario mostrando detalhes das tarefas
+ * @author Gabriel Santos
+ * @version 1.0 (27/04)
+ */
 public class TelaDetalheTarefa implements ActionListener {
 
     private JFrame janela = new JFrame("Controle de tarefas - Detalhamento tarefas");
@@ -33,9 +38,20 @@ public class TelaDetalheTarefa implements ActionListener {
     private Projeto p;
 
     
-    String[] choices = { "UGENTE", "NAO URGENTE", "ADIAVEL", "NÃƒO IMPORTANTE"};
+    String[] choices = { "UGENTE", "NAO URGENTE", "ADIAVEL", "NÃO IMPORTANTE"};
     final JComboBox<String> cb = new JComboBox<String>(choices);
     
+	/**
+	 * Mostra e permite alteração dos seguintes detalhes
+	 * (1) Nome
+	 * (2) data de inicio 
+	 * (3) data de termino
+	 * (4) descricao
+	 * (5) prioridade
+	 * (6) projeto em que a tarefa esta cadastrada
+	 * (7) tempo estimado da tarefa
+	 * (8) lista com nome das tares
+	 * */
     public void mostrarDadosTarefa(ControleTarefas ct, int indice, int opt, Projeto projeto){
 
         op = opt;
@@ -106,6 +122,11 @@ public class TelaDetalheTarefa implements ActionListener {
         excluirTarefa.addActionListener(this);
     }
 
+    /**
+     * Monitora eventos:
+     * (1) cadastro/edicao de uma tarefa
+     * (2) exclusao da tarefa 
+     */
     public void actionPerformed(ActionEvent e){
         Object src = e.getSource();
 
@@ -146,21 +167,36 @@ public class TelaDetalheTarefa implements ActionListener {
     
     }
 
+    /**
+     * notifica usuario sobre o sucesso no cadastro
+     */
     public void sucessoCadastroTar(){
         JOptionPane.showMessageDialog(null, "Tarefa cadastrada com sucesso!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
     }
+    
+    /**
+     * notifica usuario sobre erro no cadastro
+     */
     public void erroCadastroTar(){
         JOptionPane.showMessageDialog(null, "Erro ao cadastrar tarefa!", null, 
 				JOptionPane.ERROR_MESSAGE);
 		janela.dispose();
     }
+    
+    /**
+     * notifica usuario sobre o sucesso ao excluir tarefa
+     */
     public void sucessoExcluirTar(){
         JOptionPane.showMessageDialog(null, "Projeto excluido com sucesso!", null, 
 				JOptionPane.INFORMATION_MESSAGE);
 		janela.dispose();
     }
+    
+    /**
+     * notifica usuario sobre erro ao cadastro
+     */
     public void erroExcluirTar(){
         JOptionPane.showMessageDialog(null, "Erro ao excluir projeto!", null, 
 				JOptionPane.ERROR_MESSAGE);
